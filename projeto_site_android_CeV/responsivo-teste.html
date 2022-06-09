@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>teste de responsividade</title>
+    <style>
+        body{
+            background-color: gray;
+        }
+        main{
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            
+            /*width: 800px; /*tamanho máximo que vai ficar o main na horizontal*/
+            min-width: 320px; /*320px é a largura dos celulares mais antigos*/
+            max-width: 800px;
+            margin: auto; /*alinha o main no centro do navegador, mas ainda temos a rolagem lateral, assim o site não é responsivo ainda
+            então é melhor colocar o width com limite mínimo e máximo*/
+        }
+        img{
+            width: 100%; /*isso resolve o tamanho da imagem pra não criar barra de rolagem horizontal
+            mas se colocar a imagem dentro da tag <picture> dá pra fazer melhor
+            */
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>testando...</h1>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque et repudiandae blanditiis odio enim asperiores nesciunt inventore ullam, ipsam voluptate suscipit similique reprehenderit cum! At dignissimos mollitia accusantium? Dolore, tenetur! Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi officia totam ipsum ullam et blanditiis soluta repudiandae iure animi pariatur, aspernatur nobis incidunt ut odit nam, officiis debitis at quisquam?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum at natus, voluptates odit perferendis ratione eaque corporis optio eos ipsum excepturi totam! Quibusdam laboriosam dolores voluptatum non cupiditate voluptate tempore!</p>
+        <picture>
+            <source media="(max-width: 800px)" srcset="imagens/dan-droids-pq.png">
+            <img src="imagens/dan-droids.png" alt="DanDroids">
+        </picture>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis accusantium ratione dicta dolorum et vero soluta minus quos, nisi accusamus illo deleniti, tenetur, in officia nesciunt consectetur quidem ad? Atque?</p>
+    </main>
+
+</body>
+</html>

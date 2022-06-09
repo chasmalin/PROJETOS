@@ -1,0 +1,251 @@
+@charset "UTF-8";
+/*importando uma fonte do google fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+/*é só ir lá no site, escolher a fonte, selecionar ela e "embedar", daí copia o código CSS de lá e a font family pra configurar ela mais pra baixo*/
+@font-face{ /*essa configuração tá buscando a fonte que está na pasta "fontes"*/
+    font-family: 'Android';
+    src: url('../fontes/idroid.otf') format('opentype');
+    font-weight: normal;
+}
+
+/*
+    essas são todas as cores da paleta:
+    #C5EBD6, #82E0AD, #3DDB84, #2FA866, #1A5C37, #355C47.
+    vamos criar nomes pra elas ali no root!
+*/
+/*criando esse root facilita a vida, porque dá pra criar variáveis ali*/
+:root{
+    /*todas as variáveis em CSS começam com --*/
+    /*dando nomes para as cores*/
+    --cor0: #C5EBD6;
+    --cor1: #82E0AD;
+    --cor2: #3DDB84;
+    --cor3: #2FA866;
+    --cor4: #1A5C37;
+    --cor5: #355C47;
+    /*dando nomes para as fontes*/
+    --fonte-padrao: Arial, Verdana, Helvetica, sans-serif;
+    --fonte-destaque: 'Bebas Neue', cursive;
+    --fonte-android: 'Android', cursive;
+}
+/*agora ao invés de colocar manualmente cor por cor, vamos utilizar as cores das paletas como variáveis!*/
+
+/*para fazer uma configuração geral, ao invés de digitar para todos (p, h1, h2, h3...), basta digitar * que ele vai aplicar a configuração para todos os elementos
+neste caso vamos fazer sumir todas as margens que estão atrapalhando a vida (porque o padrão é 16 e a gente não quer assim kkk).
+*/
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    background-color: var(--cor0);
+    font-family: var(--fonte-padrao);
+}
+/*configuração para todos os links que forem externos ao meu site, tem que identificar lá no html quais links são externos*/
+a.externo::after{
+    content: '\1F517'; /*código da correntinha (emojipedia)*/
+}
+
+header{
+    /*alterando agora o background-color, para ao invés de ser uma cor "chapada" ficar gradiente, tem que tirar o
+    background-color: var(--cor4);
+    e colocar o
+    */
+    background-image: linear-gradient(to bottom, var(--cor3), var(--cor5));
+    /*definindo altura mínima para o cabeçalho*/
+    min-height: 120px;
+    text-align: center;
+    padding-top: 30px;
+}
+
+header > h1 {
+    color: white;
+    font-family: var(--fonte-destaque);
+    /*colocando uma margem superior no título pra ele não ficar tão colado no topo, para isso funcionar, tem que ter um padding maior no cabeçalho*/
+    font-size: 3em;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    /*colocando uma sombrinha do texto pra ficar show*/
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.606);
+}
+
+header > p{
+    font-family: var(--fonte-padrao);
+    font-size: 1.2em;
+    color: white;
+    /*quando configura a largura máxima do parágrafo, ele automaticamente vira um bloco, daí tem que colocar margin auto pra ele voltar a ser centralizado*/
+    max-width: 600px;
+    margin: auto;
+    /*só pra dar um espacinho entre esse "subtítulo" e a barra de navegação abaixo*/
+    /*margin-bottom: 20px; /*não funcionou uai*/
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.606);
+}
+
+nav {
+    background-color: var(--cor5);
+    padding: 20px 10px 10px 10px;
+    /*como não funcionou na margem de baixo do cabeçalho, eu coloquei aqui no padding o espaço (Y)*/
+    box-shadow: 0px 7px 7px rgba(0, 0, 0, 0.356);
+}
+
+nav > a{
+    color: white;
+    padding: 10px; /*coloca um espacinho maior entre os links*/
+    border-radius: 5px; /*curvinha nos cantos*/
+    text-decoration: none; /*para tirar os sublinhados dos links*/
+    font-weight: bold;
+    /*adicionando tempo ded delay*/
+    transition-duration: .5s;
+}
+
+nav > a:hover{ /*agora eu quero que aconteça algo quando eu passar o mouse em cima dos links*/
+    background-color: var(--cor3);
+    color: var(--cor4);
+}
+
+main {
+    /*adaptando a largura do conteúdo do main*/
+    min-width: 300px;
+    max-width: 1000px;
+    /*colocar a margem automática pra ela ficar centralizada*/
+    margin: auto;
+    /*colocando uma margenzinha lá em baixo pra não ficar colado no footer*/
+    margin-bottom: 30px;
+    padding: 20px; /*colocar esse padding pra o conteúdo não ficar encostado na margem*/
+    background-color: white;
+    /*colocar uma sombrinha bem discreta*/
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.416);
+    /*agora fazer ficar com as bordas curvadinhas, mas só as lá de baixo*/
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+main h1{
+    color: var(--cor5);
+    font-family: var(--fonte-android);
+    /*tirando o negrito do h1, que é assim por padrão*/
+    font-weight: normal;
+    font-size: 1.8em;
+}
+
+main h2{
+    color: var(--cor3);
+    font-family: var(--fonte-android);
+    font-size: 1.3em;
+    /*tirando o negrito do h2 também*/
+    font-weight: normal;
+    /*fazendo um degrtadê no background do título h2*/
+    background-image: linear-gradient(to right, var(--cor1), transparent);
+    text-indent: 12px;
+}
+
+main p{ /*não utilizou o > porque daí aplica pra tudo que tiver p dentro do main, mesmo se ele estiver dentro de um article*/
+    /*quando configuramos margin e padding 0 para tudo no *, tiramos uma margem que normalmente tem nos parágrafos, então vamos configurar aqui*/
+    margin: 15px 0px;
+    text-align: justify;
+    text-indent: 30px; /*parágrafo*/
+    font-size: 1.1em;
+    line-height: 1.6em; /*espaçamento*/
+}
+
+main strong{ /*tudo que estiver em negrito dentro do main*/
+    color: var(--cor4);
+    font-weight: bold;
+    /*background-color: var(--cor0);*/
+    /*padding: 2px 6px; /*em cima e na lateral*/
+}
+
+main a{
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--cor4);
+    background-color: var(--cor0);
+    padding: 2px 2px;
+}
+
+main a:hover{
+    text-decoration: underline;
+    color: var(--cor3);
+}
+
+main img{
+    /*configurando a largura das imagens para que elas se adaptem dentro do main*/
+    width: 100%;
+}
+
+main img.pequena{
+    /*width: 45%;
+    /*aqui não vai centralizar se colocar só a margem automática porque só a imagem em si não é um bloco, para isto precisamos fazer ela virar um kkk
+    mas o ideal é gerar uma outra imagem para um dispositivo menor
+    usando o max-width fica melhor aparentemente
+    */
+    max-width: 300px;
+    display: block;
+    margin: auto;
+}
+/*configurando divs da classe vídeo*/
+div.video{
+    /*background-color: var(--cor5);/*usa essa cor para conseguir visualizar, depois que estiver tudo ajeitado é só tirar ela*/
+    /*configurar a margem pra div "colar" dos lados (no main, igual fizemos no h3)*/
+    margin: 0px -20px 30px -20px;
+    padding: 20px;
+    padding-bottom: 56.5%;
+    /*esse posicionamento combinado com o do iframe vai arrumar (reçagar na verdade) a posição do vídeo, tem que combinar com o padding-bottom (linha de cima) pra melhorar*/
+    position: relative;
+}
+/*agora vamos configurar o iframe que já veio do youtube com o vídeo*/
+div.video > iframe{
+    position: absolute;
+    /*depois de arrumar o padding-bottom, coloca essas porcentagens para terminar de ajustar o vídeo ao div*/
+    top: 5%;
+    left: 5%;
+    width: 90%;
+    height: 90%;
+    /*assim ele ficou esticadinho, bonito
+    MAS, vai acontecer (dependendo do vídeo) dei ficar com umas barras pretas dos lados, então tem que ajustar o padding-bottom até sumir as barras*/
+}
+
+aside{ /*conteúdos periféricos*/
+    background-color: var(--cor0);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.46);
+}
+aside > h3{
+    background-color: var(--cor4);
+    color: white;
+    padding: 5px;
+    /*essa margem tá configurada dessa forma estranha porque ela meio que vai se "incorporar" às margens do aside, só que vai perder o arredondamento do aside, então tem que configurar o arredondamento aqui também, mas só pra parte de cima*/
+    margin: -10px -10px 0px -10px;
+    border-radius: 10px 10px 0px 0px;
+}
+
+/*fazendo só as configurações do aside, na lista, as bolinhas (ou números) vão ficar "pra fora", bem feio. então tem que fazer a configuração própria pra lista dentro do aside*/
+aside > ul{
+    list-style-position: inside; /*colocou as bolinhas pra dentro kkkk*/
+    columns: 2; /*divide o conteúdo da lista em duas colunas, massa*/
+    list-style-type: '\2714\00A0\00A0';
+    /*nessa linha foi modificado o formato da bolinha pra um "check" retirado lá do site "emojipedia". 2714 é o código do check e 00a0 é o código para nbsp (espaço) porque sem isso tinha ficado muito colado no texto
+    obs.: esses códigos não são compatível com todos os navegadores*/
+}
+
+footer {
+    background-color: var(--cor5);
+    color: white;
+    text-align: center;
+    font-size: .8em;
+    padding: 5px;
+}
+
+footer a{
+    color: white;
+    font-weight: bolder;
+    text-decoration: none;
+}
+
+footer a:hover{
+    text-decoration: underline;
+    color: var(--cor0);
+}
